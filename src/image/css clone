@@ -1,0 +1,47 @@
+미디어쿼리
+
+@media only screen and (min-width: 769px)
+.list-toplist-slider .ls-item .info .title {
+    font-size: 1.8rem;
+    text-shadow: 6px 6px 16px rgb(0 0 0 / 90%);
+    text-align: center;
+}
+
+@media only screen and (min-width: 769px)
+.ls-item .info .title {
+    font-size: 1.500rem;
+    text-shadow: 1px 1px 2px rgb(0 0 0 / 40%);
+    text-align: center;
+}
+
+@media only screen and (min-width: 769px)
+.pg-main .module_title_wrap {
+    margin-left: 90px;
+    margin-right: 90px;
+}
+
+@media only screen and (min-width: 769px)
+.pg-main .slider-container.toplist-slider {
+    margin: 30px 90px auto;
+}
+
+@media only screen and (min-width: 769px)
+.pg-main .slider-container {
+    margin-top: 27px;
+}
+
+#메인로고
+@media only screen and (min-width: 320px) and (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2), only screen and (min-width: 320px) and (max-width: 768px) and (min-resolution: 192dpi)
+.Header__LogoIcon {
+    background-image: url();
+    background-size: 635px 609px;
+}
+
+#아이콘 색상
+#ff7100;
+
+#폰트
+html {
+    font-family: "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";
+    word-wrap: break-word;
+}

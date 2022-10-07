@@ -1,0 +1,509 @@
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+*:focus {
+  outline: none;
+}
+
+/*header !== mainHeader */
+
+header,
+h1 {
+  font-size: 100%;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 900;
+  width: 100%;
+  border-bottom: 1px solid #dbdbdb;
+  box-sizing: border-box;
+  box-shadow: 0 4px 11px rgb(0 0 0 / 10%);
+  background-color: #ffffff;
+}
+.headerTransparent {
+  border-bottom: 0;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.headerMenuList {
+  flex-direction: row;
+  height: 100%;
+  margin-left: auto;
+}
+
+.headerMenuLink {
+  justify-content: center;
+  align-items: center;
+  flex: ;
+  display: flex;
+  height: 100%;
+}
+
+.headerMenuText {
+  color: #ffffff;
+}
+
+.headerMenuText::after {
+  content: "";
+  position: absolute;
+  top: -11px;
+  right: 90px;
+  display: block;
+  width: 15px;
+  height: 15px;
+  background-image: url(https://mp-seoul-image-production-s3.mangoplate.com/web/resources/uo3o88vopcmdsket.png);
+  background-size: cover;
+}
+
+.mainHeader {
+  background-image: url("../image/header_berry.jpg");
+  background-position: center;
+  display: block;
+  font-size: 100%;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  padding-top: 52px;
+  text-align: center;
+  background-size: cover;
+  color: white;
+}
+
+.mainHeader .title {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto;
+  color: #ffffff;
+  width: 280px;
+  font-size: 1.625rem;
+  line-height: 32px;
+}
+
+.mainHeader::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+h1 {
+  display: block;
+  font-size: 2em;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+
+legend {
+  padding-inline-start: 2px;
+  padding-inline-end: 2px;
+  border-width: initial;
+  border-style: none;
+  border-color: initial;
+  border-image: initial;
+  display: none;
+  position: absolute;
+  width: 0;
+  height: 0;
+  font-size: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+/* 
+fieldset {
+  appearance: none;
+  display: block;
+  margin-inline-start: 2px;
+  margin-inline-end: 2px;
+  padding-block-start: 0.35em;
+  padding-inline-start: 0.75em;
+  padding-inline-end: 0.75em;
+  padding-block-end: 0.625em;
+  min-inline-size: min-content;
+  border-width: 2px;
+  border-style: groove;
+  border-color: rgb(192, 192, 192);
+  border-image: initial;
+} */
+
+.headerLogo {
+  display: -webkit-flex;
+  justify-content: center;
+  margin: 0px;
+}
+
+.headerLogo img {
+  width: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 35px;
+}
+.headerMenuNewItem {
+  justify-content: center;
+  align-items: center;
+  width: 130px;
+  box-sizing: border-box;
+}
+.headerMenuLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  height: 100%;
+}
+
+.headerMenuText {
+  position: relative;
+  font-size: 16px;
+}
+
+li {
+  text-align: -webkit-match-parent;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+.searchWord {
+  position: absolute;
+  top: 0;
+  right: 110px;
+  bottom: 0;
+  left: 48px;
+}
+
+.mainHeader .mainSearch input[type="text"] {
+  display: block;
+  width: 100%;
+  font-size: 0.813rem;
+  /* color: #cbcbcb; */
+  line-height: 44px;
+  border: 0;
+}
+
+.mainSearch {
+  position: relative;
+  margin: 34px 15px 0 15px;
+  height: 48px;
+  border: 1px solid #ff792a;
+  border-radius: 50px;
+  background-color: #ffffff;
+}
+
+fieldset .mainSearch .icon {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: -27px;
+  text-indent: -9999px;
+}
+
+.clearBtn {
+  display: none;
+  position: absolute;
+  top: 50%;
+  right: -53px;
+  color: #dbdbdb;
+  cursor: pointer;
+  font-size: 14px;
+  transform: translateY(-50%);
+}
+
+.btnSearch {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: -1px;
+  width: 110px;
+  color: #ffffff;
+  background-color: #ff7100;
+  height: 100%;
+  appearance: none;
+  font-size: 0.813rem;
+  line-height: 48px;
+  border-radius: 50px;
+}
+
+.mainSearch .icon {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: -27px;
+  text-indent: -9999px;
+}
+
+input {
+  vertical-align: top;
+  writing-mode: horizontal-tb !important;
+  text-rendering: auto;
+  letter-spacing: normal;
+  word-spacing: normal;
+  line-height: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  text-align: start;
+  appearance: auto;
+  cursor: text;
+  -webkit-rtl-ordering: logical;
+  /* background-color: field;
+  color: fieldtext;
+  display: inline-block;
+  margin: 0em;
+  padding: 1px 2px;
+  border-width: 2px;
+  border-style: inset;
+  border-color: -internal-light-dark(
+    rgb(118, 118, 118),
+    rgb(133, 133, 133)
+  );
+  border-image: initial; */
+}
+
+input[type="submit" i] {
+  appearance: auto;
+  user-select: none;
+  white-space: pre;
+  align-items: flex-start;
+  text-align: center;
+  box-sizing: border-box;
+  cursor: default;
+  /* background-color: buttonface;
+  color: buttontext;
+  padding: 1px 6px;
+  border-width: 2px;
+  border-style: outset;
+  border-color: buttonborder;
+  border-image: initial; */
+}
+input[type="submit"] {
+  appearance: none;
+  cursor: pointer;
+  border: 0px;
+}
+
+.shortcutApp .typeMain {
+  margin-top: 59px;
+  height: 85px;
+}
+.shortcutApp {
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  margin-top: 0;
+}
+
+.shortcutApp .btn {
+  display: inline-block;
+  vertical-align: top;
+}
+
+/*Media Query for "Header"*/
+
+@media only screen and (min-width: 769px) {
+  .mainSearch input[type="text"]:placeholder-shown {
+    line-height: 50px;
+    color: #cbcbcb;
+    opacity: 1;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .mainSearch input[type="text"] {
+    height: 50px;
+    font-size: 1.1rem;
+    line-height: 50px;
+    color: #000;
+  }
+}
+@media only screen and (min-width: 769px) {
+  .mainHeader .mainSearch .icon {
+    left: -52px;
+    margin-top: -15.5px;
+    background-image: url("../image/search-svgrepo-com.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 31px;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .mainHeader {
+    padding-top: 150px;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .mainHeader .mainSearch {
+    margin: 45px auto 0 auto;
+    height: 50px;
+    width: 738px;
+    border: 2px solid #ff7100;
+    border-radius: 80px;
+    overflow: hidden;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .clearBtn {
+    display: none;
+    position: absolute;
+    top: 50%;
+    right: -53px;
+    color: #dbdbdb;
+    cursor: pointer;
+    font-size: 14px;
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .btnSearch {
+    width: 180px;
+    font-size: 1.313rem;
+    line-height: 52px;
+    border-radius: 80px;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .shortcutApp .typeMain {
+    padding: 21px 40px 0px 40px;
+    height: 110px;
+    text-align: right;
+    margin-top: 50px;
+    padding-left: 50px;
+    padding-top: 30px;
+    background-image: -o-linear-gradient(
+      to bottom,
+      transparent -3%,
+      rgba(0, 0, 0, 0.8) 100%
+    );
+    background-image: -moz-linear-gradient(
+      to bottom,
+      transparent -3%,
+      rgba(0, 0, 0, 0.8) 100%
+    );
+    background-image: -webkit-linear-gradient(
+      to bottom,
+      transparent -3%,
+      rgba(0, 0, 0, 0.8) 100%
+    );
+    background-image: -ms-linear-gradient(
+      to bottom,
+      transparent -3%,
+      rgba(0, 0, 0, 0.8) 100%
+    );
+    background-image: linear-gradient(
+      to bottom,
+      transparent -3%,
+      rgba(0, 0, 0, 0.8) 100%
+    );
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .shortcutApp {
+    padding: 33px 0 0 0;
+    height: 290px;
+    text-align: center;
+  }
+}
+@media only screen and (min-width: 769px) {
+  .shortcutApp .btn.inbound {
+    margin: 7.5px;
+    margin-top: 10px;
+    float: left;
+  }
+}
+@media only screen and (min-width: 769px) {
+  .shortcut-app .btn.inbound img {
+    width: auto;
+    height: 46px;
+  }
+}
+
+.shortcutApp .btn {
+  display: inline-block;
+  vertical-align: top;
+}
+img {
+  border: none;
+  vertical-align: top;
+  color: rgba(255, 255, 255, 0);
+  text-indent: -9999px;
+  width: 130px;
+}
+
+a {
+  border: none;
+  text-decoration: none;
+}
+a:visited {
+  text-decoration: none;
+}
+button {
+  appearance: none;
+  cursor: pointer;
+  border: 0px;
+  border-radius: 0;
+  background-color: transparent;
+}
+
+@media only screen and (min-width: 769px) {
+  .shortcutApp.typeMain {
+    padding: 21px 40px 0px 40px;
+    height: 110px;
+    text-align: right;
+    margin-top: 50px;
+    padding-left: 50px;
+    padding-top: 30px;
+  }
+}
+/* 
+@media only screen and (min-width: 769px) {
+  .headerTransparent .headerLogo {
+    background-image: url(https://mp-seoul-image-production-s3.mangoplate.com/web/resources/mangoplate-gray-logo.svg);
+  }
+} */
+
+@media only screen and (min-width: 320px) and (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (min-width: 320px) and (max-width: 768px) and (min-resolution: 192dpi) {
+  .headerLogo {
+    display: none;
+  }
+}
