@@ -2,6 +2,7 @@ import styles from "./Header.module.css";
 import appStore from "../image/app_store.svg";
 
 export const Header = () => {
+  let count = 0;
   return (
     <div className={styles.mainHeader}>
       <header
@@ -58,9 +59,12 @@ export const Header = () => {
         <ul
           className={`${styles.headerIconButtonItem} ${styles.onlyMobile}`}
         >
-          <button className={styles.userProfileButton}>
+          <button
+            className={styles.userProfileButton}
+            onClick={() => console.log("clicked!")}
+          >
             <span className={styles.personIcon}></span>
-            <span className={styles.historyCount}>0</span>
+            <span className={styles.historyCount}>{count}</span>
           </button>
         </ul>
       </header>

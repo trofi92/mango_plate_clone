@@ -7,8 +7,11 @@ export const Section = () => {
       </div>
       <div>
         <button>before backword</button>
+        <br />
         <button>before forword</button>
+        <br />
         <div>List</div>
+        <br />
       </div>
     </section>
   );

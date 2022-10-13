@@ -1,6 +1,16 @@
 import styles from "./Footer.module.css";
+import { logout, selectUser } from "../features/login/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { authService } from "../firebaseConfig";
 
 export const Footer = () => {
+  const dispatch = useDispatch();
+  const logoutOfApp = () => {
+    dispatch(logout());
+    authService.signOut();
+  };
+  const user = useSelector(selectUser);
+
   return (
     <footer className={styles.footer}>
       <div className={styles.inner}>
@@ -15,11 +25,27 @@ export const Footer = () => {
           <p className={styles.subtitle}>
             "맛있게 먹고 즐겁게 공유하자!"
           </p>
+
+          {user ? (
+            <button className={styles.subtitle} onClick={logoutOfApp}>
+              로그아웃
+            </button>
+          ) : (
+            ""
+          )}
         </div>
 
         <button className={styles.btnBpApp}>
           바나나플레이트 앱에서 볼래요!
         </button>
+
+        {user ? (
+          <button className={styles.btnBpApp} onClick={logoutOfApp}>
+            로그아웃
+          </button>
+        ) : (
+          ""
+        )}
         <p className={styles.snsShortCut}>
           <a
             href="https://www.facebook.com"
