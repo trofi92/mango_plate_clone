@@ -26,7 +26,7 @@ export const Footer = () => {
             "맛있게 먹고 즐겁게 공유하자!"
           </p>
 
-          {user ? (
+          {user !== null ? (
             <button className={styles.subtitle} onClick={logoutOfApp}>
               로그아웃
             </button>
@@ -39,7 +39,7 @@ export const Footer = () => {
           바나나플레이트 앱에서 볼래요!
         </button>
 
-        {user ? (
+        {user !== null ? (
           <button className={styles.btnBpApp} onClick={logoutOfApp}>
             로그아웃
           </button>

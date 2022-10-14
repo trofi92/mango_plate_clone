@@ -120,7 +120,7 @@ input[type="submit"] {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 900;
+  z-index: 89;
   width: 100%;
   box-sizing: border-box;
 }
@@ -169,7 +169,7 @@ input[type="submit"] {
   height: 100%;
   cursor: pointer;
 }
-.userProfileButton .personIcon {
+.personIcon {
   background-image: url(https://www.svgrepo.com/show/425931/user.svg);
   background-repeat: no-repeat;
   width: 34px;
@@ -177,7 +177,14 @@ input[type="submit"] {
   display: block;
 }
 
-.userProfileButton .historyCount {
+.personIcon button {
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  margin: -10px 0 0 0;
+}
+
+.historyCount {
   justify-content: center;
   align-items: center;
   display: flex;
@@ -301,6 +308,15 @@ fieldset .mainSearch .icon {
   top: 50%;
   left: -27px;
   text-indent: -9999px;
+}
+
+.homeSerchInput {
+  width: max-content;
+  height: max-content;
+}
+
+.homeSerchInput:focus {
+  background-color: #ffffff;
 }
 
 .clearBtn {
@@ -582,6 +598,27 @@ fieldset .mainSearch .icon {
 
 @media only screen and (min-width: 320px) and (max-width: 768px) {
   .headerMenuList {
+    display: none;
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+  .mobileUserBtn {
+    display: block;
+    margin: 30px auto;
+    width: 50px;
+    height: 30px;
+    font-size: 0.688rem;
+    color: #ffffff;
+    line-height: 27px;
+    border: 1px solid #9b9b9b;
+    border-radius: 35px;
+    background-color: #ff7100;
+    position: absolute;
+    right: 3%;
+  }
+}
+@media only screen and (min-width: 769px) {
+  .mobileUserBtn {
     display: none;
   }
 }

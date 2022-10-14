@@ -1,7 +1,10 @@
 import styles from "./Header.module.css";
 import appStore from "../image/app_store.svg";
-
+import Login from "../features/login/Login";
+import { useSelector } from "react-redux";
+import { selectUser } from "../features/login/userSlice";
 export const Header = () => {
+  const user = useSelector(selectUser);
   let count = 0;
   return (
     <div className={styles.mainHeader}>
@@ -9,12 +12,11 @@ export const Header = () => {
         className={`${styles.header} ${styles.headerTransparent}`}
       >
         <a href="/" className={styles.headerLogo}>
-          <img
+          {/* <img
             src={require("../image/banana_plate2.png")}
             alt="logo"
-          />
+          /> */}
         </a>
-
         {/* mobile menu WIP
         <ul className={styles.headerIconButtonList}>
           <li
@@ -32,7 +34,6 @@ export const Header = () => {
             className={`${styles.headerIconButtonItem} ${styles.closeButtonIcon}`}
           ></li>
         </ul> */}
-
         <ul className={styles.headerMenuList}>
           <li className={`${styles.headerMenuNewItem}`}>
             <a href="/" className={styles.headerMenuLink}>
@@ -51,20 +52,32 @@ export const Header = () => {
           <li className={`${styles.headerMenuNewItem}`}>
             <a href="/" className={styles.headerMenuLink}>
               <span className={styles.headerMenuText}>
-                주말에 뭐먹지?
+                주말에 뭐할래?
               </span>
             </a>
           </li>
         </ul>
+
+        {user !== null ? (
+          ""
+        ) : (
+          <>
+            <div className={styles.mobileUserBtn}>
+              Login
+              <Login />
+            </div>
+          </>
+        )}
         <ul
           className={`${styles.headerIconButtonItem} ${styles.onlyMobile}`}
         >
-          <button
-            className={styles.userProfileButton}
-            onClick={() => console.log("clicked!")}
-          >
-            <span className={styles.personIcon}></span>
+          <button className={styles.userProfileButton}>
+            {/* <Login> */}
+            <span className={styles.personIcon}>
+              <Login />
+            </span>
             <span className={styles.historyCount}>{count}</span>
+            {/* </Login> */}
           </button>
         </ul>
       </header>

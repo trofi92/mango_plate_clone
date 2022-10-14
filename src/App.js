@@ -10,11 +10,9 @@ import { onAuthStateChanged } from "firebase/auth";
 import "./App.css";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
-import { Section } from "./components/Section";
 import Login from "./features/login/Login";
+// import { Register } from "./features/login/Register";
 import { Routes, Route } from "react-router-dom";
-import { Profile } from "./pages/Profile"; //
-// import { DarkMode } from "./ui/DarkMode";
 
 function App() {
   const user = useSelector(selectUser);
@@ -45,11 +43,22 @@ function App() {
     <>
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/" element="" />
+        {/* <Route path="/register" element={<Register />} /> */}
       </Routes>
       {/* <DarkMode /> */}
-      <Header />
-      {!user ? <Login /> : <Section /> && <Profile />}
-      <Footer />
+
+      {user === null ? (
+        <>
+          <Header />
+          <Footer />
+        </>
+      ) : (
+        <>
+          <Header />
+          <Footer />
+        </>
+      )}
     </>
   );
 }

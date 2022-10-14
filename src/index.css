@@ -11,6 +11,9 @@ html {
 }
 
 body {
+  overflow-x: hidden;
+  overflow-y: scroll !important;
+  padding: 0px !important;
   display: block;
   position: relative;
   min-width: 320px;
