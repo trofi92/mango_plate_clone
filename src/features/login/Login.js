@@ -7,7 +7,7 @@ import {
 } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { login } from "./userSlice";
-import { off } from "../state/stateSlice";
+import { closeRegi } from "../modal/modalSlice";
 import styles from "./Login.module.css";
 import { Register } from "./Register";
 import TransitionsModal from "../../components/TransitionsModal";
@@ -63,55 +63,64 @@ function Login() {
   };
 
   return (
-    <TransitionsModal>
+    <>
       {!regiForm ? (
-        <div className={styles.login}>
-          <div>
-            <form>
-              <input
-                className={styles.loginInput}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email"
-                type="email"
-              />
-              <br />
-              <input
-                className={styles.loginInput}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-                type="password"
-              />
-              <br />
-              <button type="submit" onClick={loginToApp}>
-                Sign In
-              </button>
-              <br />
-              <button className={styles.goRegister} onClick={onClick}>
-                이메일로 가입하기!
-              </button>
-            </form>
+        <TransitionsModal>
+          <div className={styles.login}>
             <div>
-              <button onClick={onSocialClick} name="google">
-                Continue with Google
-              </button>
-              <br />
-              <img
-                className={styles.logo}
-                src={require("../../image/banana_plate2.png")}
-                alt="logo"
-              />
+              <form>
+                <input
+                  className={styles.loginInput}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email"
+                  type="email"
+                />
+                <br />
+                <input
+                  className={styles.loginInput}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
+                  type="password"
+                />
+                <br />
+                <button type="submit" onClick={loginToApp}>
+                  Sign In
+                </button>
+                <br />
+                <button
+                  className={styles.goRegister}
+                  onClick={onClick}
+                >
+                  이메일로 가입하기
+                </button>
+              </form>
+              <div>
+                <button onClick={onSocialClick} name="google">
+                  Continue with Google
+                </button>
+                <br />
+                <img
+                  className={styles.logo}
+                  src={require("../../image/banana_plate2.png")}
+                  alt="logo"
+                />
+              </div>
             </div>
           </div>
-        </div>
+        </TransitionsModal>
       ) : (
         <>
-          <Register />
-          <button onClick={() => dispatch(off())}></button>
+          <TransitionsModal>
+            <Register />
+            <button onClick={() => dispatch(closeRegi())}>
+              다음에 할래요
+            </button>
+          </TransitionsModal>
         </>
       )}
-    </TransitionsModal>
+    </>
   );
 }
 
