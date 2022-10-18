@@ -8,16 +8,13 @@ import {
 import { authService } from "./firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 import "./App.css";
-import { Header } from "./components/Header";
-import { Footer } from "./components/Footer";
-import Login from "./features/login/Login";
-// import { Register } from "./features/login/Register";
+import { Home } from "./pages/Home";
 import { Routes, Route } from "react-router-dom";
+import Restaurants from "./components/Restaurants";
 
 function App() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
-
   // useEffect hook : check at page load if a user is authenticated
   useEffect(() => {
     onAuthStateChanged(authService, (userAuth) => {
@@ -28,35 +25,28 @@ function App() {
           login({
             email: userAuth.email,
             uid: userAuth.uid,
-            displayName: userAuth.displayName,
-            photoUrl: userAuth.photoURL,
           })
         );
       } else {
         dispatch(logout());
+        console.log(userAuth);
       }
-      console.log(userAuth);
+      return;
     });
   }, []);
-
+  console.log(user);
   return (
     <>
       <Routes>
-        <Route path="/login" element={<Login />} />
         <Route path="/" element="" />
-        {/* <Route path="/register" element={<Register />} /> */}
       </Routes>
-      {/* <DarkMode /> */}
 
       {user === null ? (
-        <>
-          <Header />
-          <Footer />
-        </>
+        <Home />
       ) : (
         <>
-          <Header />
-          <Footer />
+          <Home />
+          <Restaurants />
         </>
       )}
     </>

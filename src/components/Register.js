@@ -4,15 +4,20 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import { authService } from "../../firebaseConfig";
-import { login } from "./userSlice";
+import { authService } from "../firebaseConfig";
+import { login } from "../features/login/userSlice";
+import { closeRegi } from "../features/modal/modalSlice";
+import { useNavigate } from "react-router-dom";
+import TransitionsModal from "./TransitionsModal";
 
 export const Register = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const register = () => {
+  const register = (e) => {
+    e.preventDefault();
     const emailRegex =
       /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,50})$/i;
     const passwordRegex =
@@ -42,31 +47,44 @@ export const Register = () => {
       .catch((err) => {
         alert(err, "Please check your Email or Password!");
       });
+    alert("가입완료! 로그인 해주세요!");
+    return navigate("/", { replace: true });
   };
 
   return (
-    <div>
-      <form>
-        <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Please enter your Email"
-          type="email"
-        />
-        <br />
-        <input
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="enter your Password"
-          type="password"
-        />
-        <p>Not a member? :</p>
-        <button type="submit" onClick={register}>
-          Register Now
-        </button>
-        <br />
-        <button type="submit">다음에 할래요!</button>
-      </form>
-    </div>
+    <TransitionsModal>
+      <div>
+        <form>
+          <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Please enter your Email"
+            type="email"
+          />
+          <br />
+          <input
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="enter your Password"
+            type="password"
+          />
+          <p>Not a member? :</p>
+          <button
+            type="submit"
+            onClick={`${register} ${dispatch(closeRegi())}`}
+          >
+            Register Now
+          </button>
+          <br />
+          <button
+            onClick={() => {
+              dispatch(closeRegi());
+            }}
+          >
+            다음에 할래요!
+          </button>
+        </form>
+      </div>
+    </TransitionsModal>
   );
 };

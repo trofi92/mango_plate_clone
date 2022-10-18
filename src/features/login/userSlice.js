@@ -8,10 +8,10 @@ export const userSlice = createSlice({
   initialState, //default value
   reducers: {
     login: (state, action) => {
-      state.user = action.payload;
+      state.user = action.payload; // 해당 상태를 import한 컴포넌트 안에서 값을 전달받아 사용
     },
     logout: (state) => {
-      state.user = null;
+      state.user = null; //상태값을 직접 변경하므로 전달할 값이 없음 => payload 사용x
     },
   },
 });

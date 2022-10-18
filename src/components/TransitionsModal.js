@@ -48,6 +48,7 @@ export default function TransitionsModal(props) {
             >
               {props.title}
             </Typography>
+
             <Typography
               component={"div"}
               id="transition-modal-description"
@@ -55,6 +56,10 @@ export default function TransitionsModal(props) {
             >
               {props.children}
               "맛있게 먹고 즐겁게 공유하자!"
+              <hr />
+              <button onClick={handleClose}>
+                <h4>닫기</h4>
+              </button>
             </Typography>
           </Box>
         </Fade>

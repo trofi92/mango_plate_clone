@@ -1,11 +1,16 @@
 import styles from "./Header.module.css";
 import appStore from "../image/app_store.svg";
-import Login from "../features/login/Login";
-import { useSelector } from "react-redux";
+import Login from "./Login";
+import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../features/login/userSlice";
+import { login, logout } from "../features/login/userSlice";
+import { Register } from "./Register";
+
 export const Header = () => {
   const user = useSelector(selectUser);
+  const dispatch = useDispatch();
   let count = 0;
+  console.log(logout(), login());
   return (
     <div className={styles.mainHeader}>
       <header
@@ -56,28 +61,58 @@ export const Header = () => {
               </span>
             </a>
           </li>
+          {/* 로그인/로그아웃 */}
+          {user !== null ? (
+            <li className={`${styles.headerMenuNewItem}`}>
+              <button
+                onClick={() => {
+                  dispatch(logout(), alert("로그아웃 되었습니다"));
+                }}
+                className={styles.headerMenuLink}
+              >
+                <span className={styles.headerMenuText}>
+                  로그아웃
+                </span>
+              </button>
+            </li>
+          ) : (
+            <li className={`${styles.headerMenuNewItem}`}>
+              <button
+                // onClick={(e) => {
+                //   e.preventDefault();
+                //   dispatch(login());
+                // }}
+                className={styles.headerMenuLink}
+              >
+                <span className={styles.headerLogin}>
+                  <Login />
+                </span>
+                <span className={styles.headerMenuText}>로그인</span>
+              </button>
+            </li>
+          )}
         </ul>
+        <li className={`${styles.headerMenuNewItem}`}>
+          <button className={styles.headerMenuLink}>
+            <span className={styles.headerLogin}>
+              <Register />
+            </span>
+            <span className={styles.headerMenuText}>회원가입</span>
+          </button>
+        </li>
 
-        {user !== null ? (
-          ""
-        ) : (
-          <>
-            <div className={styles.mobileUserBtn}>
-              Login
-              <Login />
-            </div>
-          </>
-        )}
+        <div className={styles.mobileUserBtn}>
+          Login
+          <Login />
+        </div>
+
+        {/* 회원페이지 WIP */}
         <ul
           className={`${styles.headerIconButtonItem} ${styles.onlyMobile}`}
         >
           <button className={styles.userProfileButton}>
-            {/* <Login> */}
-            <span className={styles.personIcon}>
-              <Login />
-            </span>
+            <span className={styles.personIcon}></span>
             <span className={styles.historyCount}>{count}</span>
-            {/* </Login> */}
           </button>
         </ul>
       </header>
@@ -104,7 +139,6 @@ export const Header = () => {
               maxLength="50"
               placeholder="지역, 식당 혹은 음식"
               autoComplete="off"
-              //   onClick={}
             />
             <span className={styles.clearBtn}>CLEAR</span>
           </label>
@@ -112,7 +146,6 @@ export const Header = () => {
             className={styles.btnSearch}
             type="submit"
             value="검색"
-            // onClick={}
           />
         </fieldset>
         <aside className={`${styles.shortcutApp} ${styles.typeMain}`}>

@@ -272,8 +272,11 @@ input[type="submit"] {
   height: 100%;
 }
 
+.headerLogin {
+  position: absolute;
+}
+
 .headerMenuText {
-  position: relative;
   font-size: 16px;
 }
 
