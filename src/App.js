@@ -10,7 +10,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import "./App.css";
 import { Home } from "./pages/Home";
 import { Routes, Route } from "react-router-dom";
-import Restaurants from "./components/Restaurants";
+import { Restaurants } from "./components/Restaurants";
 
 function App() {
   const user = useSelector(selectUser);
@@ -29,7 +29,7 @@ function App() {
         );
       } else {
         dispatch(logout());
-        console.log(userAuth);
+        // console.log(userAuth);
       }
       return;
     });
@@ -38,17 +38,11 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element="" />
+        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Restaurants />} />
+        <Route path="/:category" element={<Home />} />
       </Routes>
-
-      {user === null ? (
-        <Home />
-      ) : (
-        <>
-          <Home />
-          <Restaurants />
-        </>
-      )}
+      {/* <Home /> */}
     </>
   );
 }

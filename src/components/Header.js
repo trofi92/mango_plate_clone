@@ -3,70 +3,64 @@ import appStore from "../image/app_store.svg";
 import Login from "./Login";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../features/login/userSlice";
-import { login, logout } from "../features/login/userSlice";
+import { logout } from "../features/login/userSlice";
 import { Register } from "./Register";
+import { useScroll } from "../lib/useScroll";
 
 export const Header = () => {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
+
+  //custom hook :  스크롤 이벤트
+  const { y } = useScroll();
+
+  // WIP : 사용자 좋아요 or 즐겨찾기 기능 추가시 카운트 증가
   let count = 0;
-  console.log(logout(), login());
+
   return (
     <div className={styles.mainHeader}>
       <header
-        className={`${styles.header} ${styles.headerTransparent}`}
+        className={`${styles.header} ${styles.headerTransparent} ${
+          y > 200 ? styles.scrolled : ""
+        }`}
       >
         <a href="/" className={styles.headerLogo}>
-          {/* <img
+          <img
             src={require("../image/banana_plate2.png")}
             alt="logo"
-          /> */}
+          />
         </a>
-        {/* mobile menu WIP
-        <ul className={styles.headerIconButtonList}>
-          <li
-            className={`${styles.headerIconButtonItem} ${styles.onlyMobile}`}
-          >
-            <button className={styles.menuButton}>
-              <img
-                className={styles.menuButtonIcon}
-                alt="mobile-menu"
-              />
-            </button>
-          </li>
-          <li className={styles.headerIconButtonItem}></li>
-          <li
-            className={`${styles.headerIconButtonItem} ${styles.closeButtonIcon}`}
-          ></li>
-        </ul> */}
+        <ul className={styles.headerIconButtonList}></ul>
         <ul className={styles.headerMenuList}>
-          <li className={`${styles.headerMenuNewItem}`}>
+          <li className={styles.headerMenuNewItem}>
             <a href="/" className={styles.headerMenuLink}>
               <span className={styles.headerMenuText}>
                 오늘 뭐먹지?
               </span>
             </a>
           </li>
-          <li className={`${styles.headerMenuNewItem}`}>
+          <li className={styles.headerMenuNewItem}>
             <a href="/" className={styles.headerMenuLink}>
               <span className={styles.headerMenuText}>
                 내일 뭐먹지?
               </span>
             </a>
           </li>
-          <li className={`${styles.headerMenuNewItem}`}>
+          <li className={styles.headerMenuNewItem}>
             <a href="/" className={styles.headerMenuLink}>
               <span className={styles.headerMenuText}>
                 주말에 뭐할래?
               </span>
             </a>
           </li>
+
           {/* 로그인/로그아웃 */}
           {user !== null ? (
-            <li className={`${styles.headerMenuNewItem}`}>
+            <li className={styles.headerMenuNewItem}>
               <button
                 onClick={() => {
                   dispatch(logout(), alert("로그아웃 되었습니다"));
+                  console.log(logout());
                 }}
                 className={styles.headerMenuLink}
               >
@@ -76,14 +70,8 @@ export const Header = () => {
               </button>
             </li>
           ) : (
-            <li className={`${styles.headerMenuNewItem}`}>
-              <button
-                // onClick={(e) => {
-                //   e.preventDefault();
-                //   dispatch(login());
-                // }}
-                className={styles.headerMenuLink}
-              >
+            <li className={styles.headerMenuNewItem}>
+              <button className={styles.headerMenuLink}>
                 <span className={styles.headerLogin}>
                   <Login />
                 </span>
@@ -92,7 +80,9 @@ export const Header = () => {
             </li>
           )}
         </ul>
-        <li className={`${styles.headerMenuNewItem}`}>
+
+        {/* 로그인/로그아웃 */}
+        <li className={styles.headerMenuNewItem}>
           <button className={styles.headerMenuLink}>
             <span className={styles.headerLogin}>
               <Register />
@@ -100,13 +90,12 @@ export const Header = () => {
             <span className={styles.headerMenuText}>회원가입</span>
           </button>
         </li>
-
         <div className={styles.mobileUserBtn}>
           Login
           <Login />
         </div>
 
-        {/* 회원페이지 WIP */}
+        {/*WIP: 회원페이지 */}
         <ul
           className={`${styles.headerIconButtonItem} ${styles.onlyMobile}`}
         >
@@ -116,6 +105,7 @@ export const Header = () => {
           </button>
         </ul>
       </header>
+      {/* 타이틀/검색창 */}
       <div>
         <p className={styles.title}>
           너와 나의 먹킷리스트 찐경험 후기!

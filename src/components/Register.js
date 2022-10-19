@@ -47,7 +47,7 @@ export const Register = () => {
       .catch((err) => {
         alert(err, "Please check your Email or Password!");
       });
-    alert("가입완료! 로그인 해주세요!");
+    alert("가입완료! 메인으로 이동합니다");
     return navigate("/", { replace: true });
   };
 
@@ -69,10 +69,7 @@ export const Register = () => {
             type="password"
           />
           <p>Not a member? :</p>
-          <button
-            type="submit"
-            onClick={`${register} ${dispatch(closeRegi())}`}
-          >
+          <button type="submit" onClick={register}>
             Register Now
           </button>
           <br />

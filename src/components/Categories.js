@@ -8,28 +8,36 @@ const categories = [
     text: "전체보기",
   },
   {
-    name: "business",
-    text: "비즈니스",
+    name: "중구",
+    text: "중구",
   },
   {
-    name: "entertainment",
-    text: "엔터테인먼트",
+    name: "남구",
+    text: "남구",
   },
   {
-    name: "health",
-    text: "건강",
+    name: "서구",
+    text: "서구",
   },
   {
-    name: "science",
-    text: "과학",
+    name: "북구",
+    text: "북구",
   },
   {
-    name: "sports",
-    text: "스포츠",
+    name: "수성구",
+    text: "수성구",
   },
   {
-    name: "technology",
-    text: "기술",
+    name: "달성군",
+    text: "달성군",
+  },
+  {
+    name: "달서구",
+    text: "달서구",
+  },
+  {
+    name: "부산",
+    text: "부산",
   },
 ];
 
@@ -38,6 +46,8 @@ const CategoriesBlock = styled.div`
   padding: 1rem;
   width: 768p;
   margin: 0 auto;
+  text-align: center;
+  right: 50%;
   @media screen (max-width: 768px) {
     width: 100%;
     overflow-x: auto;
@@ -53,15 +63,16 @@ const Category = styled(NavLink)`
   padding-bottom: 0.25rem;
 
   &:hover {
-    color: #495057;
+    font-size: 1.2rem;
+    color: #ff7100;
   }
 
   &.active {
     font-weight: 600;
-    border-bottom: 2px solid #22b8cf;
-    color: #22b8cf;
+    border-bottom: 2px solid #ff7100;Dft62uAmHRxv%2B7BShfFS3cGKy9bRuj4wapHt9aLthBtJG69Fw%3D%3D
+    color: #ff7100;
     &:hover {
-      color: #3bc9db;
+      color: #ff7101;
     }
   }
 

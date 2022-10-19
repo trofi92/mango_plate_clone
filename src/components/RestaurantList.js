@@ -19,19 +19,13 @@ const RestaurantListBlock = styled.div`
 
 const RestaurantList = ({ category }) => {
   const [loading, response, error] = usePromise(() => {
-    const query = category === "all" ? "" : `&category=${category}`;
-
-    // const getData = () => {
-    //   const config = {
-    //     baseUrl:
-    //       "", //"proxy":"엔트리포인트" > package.json
-    //   };
-    //   return axios.get(config.baseUrl);
-    // };
-    // getData();
-
+    // 대구맛집(이미지x) `https://www.daegufood.go.kr/kor/api/tasty.html?mode=json&addr=${query}`
+    // 뉴스 `https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=c237e8c6905945c4849699a16d662ecf`
+    // 부산맛집(이미지o) `https://apis.data.go.kr/6260000/FoodService/getFoodKr?resultType=json&serviceKey=Z%2FLB33XKrUs5j55T3%2B4tQoVS3VLruSIIpD0ZzDft62uAmHRxv%2B7BShfFS3cGKy9bRuj4wapHt9aLthBtJG69Fw%3D%3D`
+    // const query = category === "all" ? "" : `&category=${category}`;
     return axios.get(
-      `https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=c237e8c6905945c4849699a16d662ecf`
+      //청주시
+      "http://apis.data.go.kr/6430000/goodRestaService1/getGoodResta1?serviceKey=Z%2FLB33XKrUs5j55T3%2B4tQoVS3VLruSIIpD0ZzDft62uAmHRxv%2B7BShfFS3cGKy9bRuj4wapHt9aLthBtJG69Fw%3D%3D&currentPage=1&perPage=10"
     );
   }, [category]);
 
@@ -41,17 +35,21 @@ const RestaurantList = ({ category }) => {
 
   //when it doesn't get response values
   if (!response) {
-    return null;
+    return ""; //or null
   }
   // when it cause some error
   if (error) {
     return <RestaurantListBlock>Error!</RestaurantListBlock>;
   }
-  const { articles } = response.data;
+  const { body } = response.data;
+  console.log(response.data);
+
   return (
     <RestaurantListBlock>
-      {articles.map((article) => (
-        <RestaurantItem key={article.url} article={article} />
+      {body.map((x) => (
+        <div>
+          <RestaurantItem key={x.BSSH_NM} x={x} />
+        </div>
       ))}
     </RestaurantListBlock>
   );

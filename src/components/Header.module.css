@@ -111,7 +111,7 @@ input[type="submit"] {
 }
 
 .header {
-  height: 101px;
+  height: 80px;
   font-size: 100%;
   display: flex;
   flex-direction: row;
@@ -128,6 +128,11 @@ input[type="submit"] {
   border-bottom: 0;
   box-shadow: none;
   background-color: transparent;
+}
+
+.headerTransparent.scrolled {
+  padding: 18px 0;
+  background-color: #ff7100;
 }
 
 .headerMenuList {
@@ -244,13 +249,14 @@ input[type="submit"] {
 }
 
 .headerLogo {
-  display: -webkit-flex;
+  display: inline-block;
+  width: 12%;
   justify-content: center;
   margin: 0px;
 }
 
 .headerLogo img {
-  width: 50%;
+  width: 35%;
   background-size: cover;
   background-repeat: no-repeat;
   border-radius: 35px;

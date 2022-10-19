@@ -14,7 +14,7 @@ const RestaurantItemBlock = styled.div`
     }
   }
   .contents {
-    h2 {
+    h4 {
       margin: 0;
       a {
         color: black;
@@ -25,33 +25,45 @@ const RestaurantItemBlock = styled.div`
       line-height: 1.5;
       margin-top: 0.5rem;
       white-space: normal;
+      font-size: 0.8rem;
     }
   }
   & + & {
     margin-top: 3rem;
   }
 `;
-const RestaurantItem = ({ article }) => {
-  const { title, description, url, urlToImage } = article;
+const RestaurantItem = ({ x }) => {
+  const { BSSH_NM, SIGUN_NM, DETAIL_ADRES, RM } = x;
   return (
     <RestaurantItemBlock>
-      {urlToImage && (
-        <div className="thumbnail">
-          <a href={url} target="_blank" rel="noopener noreferrer">
-            <img src={urlToImage} alt="thumbnail" />
-          </a>
-        </div>
-      )}
       <div className="contents">
-        <h2>
-          <a href={url} target="_blank" rel="noopener noreferrer">
-            {title}
-          </a>
-        </h2>
-        <p>{description}</p>
+        <h4>{BSSH_NM}</h4>
+        <p>{SIGUN_NM}</p>
+        <p>{`${DETAIL_ADRES} ${RM}`}</p>
+        <br />
       </div>
     </RestaurantItemBlock>
   );
+  // const { title, description, url, urlToImage } = article;
+  // return (
+  //   <RestaurantItemBlock>
+  //     {urlToImage && (
+  //       <div className="thumbnail">
+  //         <a href={url} target="_blank" rel="noopener noreferrer">
+  //           <img src={urlToImage} alt="thumbnail" />
+  //         </a>
+  //       </div>
+  //     )}
+  //     <div className="contents">
+  //       <h4>
+  //         <a href={url} target="_blank" rel="noopener noreferrer">
+  //           {title}
+  //         </a>
+  //       </h4>
+  //       <p>{description}</p>
+  //     </div>
+  //   </RestaurantItemBlock>
+  // );
 };
 
 export default RestaurantItem;

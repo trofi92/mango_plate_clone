@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { signOut } from "firebase/auth";
+import { authService } from "../../firebaseConfig";
 const initialState = {
   value: null,
 };
@@ -12,6 +14,7 @@ export const userSlice = createSlice({
     },
     logout: (state) => {
       state.user = null; //상태값을 직접 변경하므로 전달할 값이 없음 => payload 사용x
+      signOut(authService);
     },
   },
 });
