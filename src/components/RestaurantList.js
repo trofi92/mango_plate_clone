@@ -25,7 +25,8 @@ const RestaurantList = ({ category }) => {
     // const query = category === "all" ? "" : `&category=${category}`;
     return axios.get(
       //청주시
-      "http://apis.data.go.kr/6430000/goodRestaService1/getGoodResta1?serviceKey=Z%2FLB33XKrUs5j55T3%2B4tQoVS3VLruSIIpD0ZzDft62uAmHRxv%2B7BShfFS3cGKy9bRuj4wapHt9aLthBtJG69Fw%3D%3D&currentPage=1&perPage=10"
+      // "http://apis.data.go.kr/6430000/goodRestaService1/getGoodResta1?serviceKey=Z%2FLB33XKrUs5j55T3%2B4tQoVS3VLruSIIpD0ZzDft62uAmHRxv%2B7BShfFS3cGKy9bRuj4wapHt9aLthBtJG69Fw%3D%3D&currentPage=1&perPage=10"
+      "https://apis.data.go.kr/6260000/FoodService/getFoodKr?resultType=json&serviceKey=Z%2FLB33XKrUs5j55T3%2B4tQoVS3VLruSIIpD0ZzDft62uAmHRxv%2B7BShfFS3cGKy9bRuj4wapHt9aLthBtJG69Fw%3D%3D"
     );
   }, [category]);
 
@@ -41,16 +42,18 @@ const RestaurantList = ({ category }) => {
   if (error) {
     return <RestaurantListBlock>Error!</RestaurantListBlock>;
   }
-  const { body } = response.data;
+  const item = response.data.getFoodKr.item;
   console.log(response.data);
+  console.log(response.data.getFoodKr.item);
 
   return (
     <RestaurantListBlock>
-      {body.map((x) => (
-        <div>
-          <RestaurantItem key={x.BSSH_NM} x={x} />
-        </div>
-      ))}
+      {item &&
+        item.map((x) => (
+          <div>
+            <RestaurantItem key={x.MAIN_TITLE} x={x} />
+          </div>
+        ))}
     </RestaurantListBlock>
   );
 };

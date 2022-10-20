@@ -159,7 +159,7 @@ a:focus {
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 768px) {
-  footer.footer .sitemapLocationKeyword .keywordWrap {
+  .keywordWrap {
     font-size: 0.563rem;
   }
 }
@@ -178,12 +178,12 @@ a:focus {
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 768px) {
-  footer.footer .linksExternal .listLinks > li {
+  .listLinks > li {
     display: inline-block;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 768px) {
-  footer.footer .btnBpApp {
+  .btnBpApp {
     display: block;
     margin: 30px auto;
     width: 260px;
@@ -197,30 +197,26 @@ a:focus {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 768px) {
-  footer.footer .linksExternal .listLinks > li a:after {
+  .listLinks > li a:after {
     content: "|";
     display: inline-block;
     margin: 0 5px;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 768px) {
-  footer.footer
-    .linksExternal
-    .listLinks
-    > li:not(.only-desktop)
-    a:after {
+  .listLinks > li:not(.only-desktop) a:after {
     content: "|";
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2),
   only screen and (min-width: 320px) and (max-width: 768px) and (min-resolution: 192dpi) {
-  .snsShortCut .btn.fb {
+  .btn.fb {
     background-image: url("../image/facebook.svg");
     background-repeat: no-repeat;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 768px) {
-  footer.footer .linksExternal .listLinks > li a {
+  .listLinks > li a {
     font-size: 0.563rem;
   }
 }
@@ -233,18 +229,18 @@ a:focus {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 768px) {
-  footer.footer .snsShortCut .btn {
+  .btn {
     margin: 0 3.467%;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 768px) {
-  footer.footer .snsShortCut {
+  .snsShortCut {
     padding: 23px 0 11px 0;
     text-align: center;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 768px) {
-  footer.footer .bpLogo {
+  .bpLogo {
     display: block;
     margin: 0 auto;
     width: 50%;
@@ -252,12 +248,13 @@ a:focus {
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 768px) {
-  footer.footer {
+  .footer {
     text-align: center;
+    width: 110%;
   }
 }
 @media only screen and (min-width: 320px) and (max-width: 768px) {
-  footer.footer > .inner {
+  .footer > .inner {
     padding: 25px 15px 0 15px;
   }
 }

@@ -59,7 +59,7 @@ export const Header = () => {
             <li className={styles.headerMenuNewItem}>
               <button
                 onClick={() => {
-                  dispatch(logout(), alert("로그아웃 되었습니다"));
+                  dispatch(logout());
                   console.log(logout());
                 }}
                 className={styles.headerMenuLink}
@@ -146,15 +146,19 @@ export const Header = () => {
             />
           </a>
           <button className={`${styles.btn} ${styles.google}`}>
-            <img
-              src={
-                "https://mp-seoul-image-production-s3.mangoplate.com/web/resources/bzdlmp2toaxrdjqg.png"
-              }
-              alt="google"
-            />
+            <a href="https://play.google.com/store/games">
+              <img
+                src={
+                  "https://mp-seoul-image-production-s3.mangoplate.com/web/resources/bzdlmp2toaxrdjqg.png"
+                }
+                alt="google"
+              />
+            </a>
           </button>
           <button className={`${styles.btn} ${styles.ios}`}>
-            <img src={appStore} alt="ios" />
+            <a href="https://www.apple.com/kr/app-store/">
+              <img src={appStore} alt="ios" />
+            </a>
           </button>
         </aside>
       </div>

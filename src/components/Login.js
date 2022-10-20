@@ -7,9 +7,9 @@ import {
 } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { login } from "../features/login/userSlice";
-import { closeRegi } from "../features/modal/modalSlice";
 import styles from "./Login.module.css";
 import TransitionsModal from "./TransitionsModal";
+import { Alert, Button } from "@mui/material";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -35,11 +35,17 @@ function Login() {
   /**login with email and password **/
   const loginToApp = async (e) => {
     e.preventDefault();
+    if (email.length < 1 || password.length < 8) {
+      alert("아이디 혹은 비밀번호를 확인해주세요");
+      // return (
+      //   <Alert descirption={"아이디 혹은 비밀번호를 확인해주세요"} />
+      // );
+    }
     // "Sign in" an existing user with Firebase
     await signInWithEmailAndPassword(authService, email, password)
       .then((userAuth) => {
         //userSlice에서 전달받은 State Slice를 dispatch하고,
-        //가져온 action함수에 값을 전달해 state를 update함.
+        //가져온 action함수에 값을 전달해 state를 update함
         dispatch(
           login({
             email: userAuth.user.email,
@@ -53,19 +59,26 @@ function Login() {
       });
     // returns  an auth *"object"* after a successful authentication
     // userAuth.user contains all our user details(values)
-    return dispatch(closeRegi());
+    // return dispatch(closeRegi());
   };
 
   return (
     <TransitionsModal title={"Login"}>
       <div className={styles.login}>
         <div>
+          <img
+            className={styles.logo}
+            src={require("../image/banana_plate2.png")}
+            alt="logo"
+          />
+          <br />
+          <br />
           <form>
             <input
               className={styles.loginInput}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
+              placeholder="이메일을 입력해주세요!"
               type="email"
             />
             <br />
@@ -73,29 +86,20 @@ function Login() {
               className={styles.loginInput}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
+              placeholder="비밀번호를 입력해주세요!"
               type="password"
             />
             <br />
-            <button
-              type="submit"
-              // onClick={`${loginToApp} ${dispatch(closeRegi())}`}
-              onClick={loginToApp}
-            >
+            <Button type="submit" onClick={loginToApp}>
               Sign In
-            </button>
+            </Button>
             <br />
           </form>
           <div>
-            <button onClick={onSocialClick} name="google">
+            <Button onClick={onSocialClick} name="google">
               Continue with Google
-            </button>
+            </Button>
             <br />
-            <img
-              className={styles.logo}
-              src={require("../image/banana_plate2.png")}
-              alt="logo"
-            />
           </div>
         </div>
       </div>

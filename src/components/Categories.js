@@ -48,9 +48,26 @@ const CategoriesBlock = styled.div`
   margin: 0 auto;
   text-align: center;
   right: 50%;
-  @media screen (max-width: 768px) {
+  div {
+    grid-area: a;
+  }
+  @media screen (max-width: 769px) {
     width: 100%;
     overflow-x: auto;
+  }
+  @media only screen and (min-width: 320px) and (max-width: 768px) {
+    margin: 0;
+    height: 20%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+    grid-template-areas:
+      "a a a"
+      "a a a"
+      "a a a";
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 `;
 
@@ -69,13 +86,12 @@ const Category = styled(NavLink)`
 
   &.active {
     font-weight: 600;
-    border-bottom: 2px solid #ff7100;Dft62uAmHRxv%2B7BShfFS3cGKy9bRuj4wapHt9aLthBtJG69Fw%3D%3D
+    border-bottom: 2px solid #ff7100;
     color: #ff7100;
     &:hover {
       color: #ff7101;
     }
   }
-
   & + & {
     margin-left: 1rem;
   }

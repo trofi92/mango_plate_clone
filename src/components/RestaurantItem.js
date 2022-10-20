@@ -33,37 +33,45 @@ const RestaurantItemBlock = styled.div`
   }
 `;
 const RestaurantItem = ({ x }) => {
-  const { BSSH_NM, SIGUN_NM, DETAIL_ADRES, RM } = x;
-  return (
-    <RestaurantItemBlock>
-      <div className="contents">
-        <h4>{BSSH_NM}</h4>
-        <p>{SIGUN_NM}</p>
-        <p>{`${DETAIL_ADRES} ${RM}`}</p>
-        <br />
-      </div>
-    </RestaurantItemBlock>
-  );
-  // const { title, description, url, urlToImage } = article;
+  // const { BSSH_NM, SIGUN_NM, DETAIL_ADRES, RM } = x;
   // return (
   //   <RestaurantItemBlock>
-  //     {urlToImage && (
-  //       <div className="thumbnail">
-  //         <a href={url} target="_blank" rel="noopener noreferrer">
-  //           <img src={urlToImage} alt="thumbnail" />
-  //         </a>
-  //       </div>
-  //     )}
   //     <div className="contents">
-  //       <h4>
-  //         <a href={url} target="_blank" rel="noopener noreferrer">
-  //           {title}
-  //         </a>
-  //       </h4>
-  //       <p>{description}</p>
+  //       <h4>{BSSH_NM}</h4>
+  //       <p>{SIGUN_NM}</p>
+  //       <p>{`${DETAIL_ADRES} ${RM}`}</p>
+  //       <br />
   //     </div>
   //   </RestaurantItemBlock>
   // );
+  const { MAIN_TITLE, ITEMCNTNTS, HOMEPAGE_URL, MAIN_IMG_THUMB } = x;
+  return (
+    <RestaurantItemBlock>
+      {x.MAIN_IMG_THUMB && (
+        <div className="thumbnail">
+          <a
+            href={HOMEPAGE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={MAIN_IMG_THUMB} alt="thumbnail" />
+          </a>
+        </div>
+      )}
+      <div className="contents">
+        <h4>
+          <a
+            href={HOMEPAGE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {MAIN_TITLE}
+          </a>
+        </h4>
+        <p>{ITEMCNTNTS}</p>
+      </div>
+    </RestaurantItemBlock>
+  );
 };
 
 export default RestaurantItem;

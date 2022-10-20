@@ -9,12 +9,15 @@ import { login } from "../features/login/userSlice";
 import { closeRegi } from "../features/modal/modalSlice";
 import { useNavigate } from "react-router-dom";
 import TransitionsModal from "./TransitionsModal";
+import { Button } from "@mui/material";
+import styles from "./Register.module.css";
 
 export const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [checkPassword, setCheckPassword] = useState("");
 
   const register = (e) => {
     e.preventDefault();
@@ -24,9 +27,11 @@ export const Register = () => {
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,12}$/;
 
     if (emailRegex.test(email) !== true) {
-      return alert("Please enter a full email");
+      return alert("이메일 형식이 맞지 않아요. 다시 확인해주세요.");
     } else if (passwordRegex.test(password) !== true) {
-      return alert("Please check your password format");
+      return alert("비밀번호 형식이 맞지 않아요. 다시 확인해주세요.");
+    } else if (password !== checkPassword) {
+      return alert("입력하신 비밀번호가 일치하지 않아요!");
     }
     // create "new user(register)" with Firebase
     createUserWithEmailAndPassword(authService, email, password)
@@ -52,34 +57,43 @@ export const Register = () => {
   };
 
   return (
-    <TransitionsModal>
+    <TransitionsModal title={"Reigister"}>
       <div>
+        <img
+          className={styles.logo}
+          src={require("../image/banana_plate2.png")}
+          alt="logo"
+        />
+        <br />
         <form>
+          <p style={styles.label}>이메일 : </p>
           <input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Please enter your Email"
+            placeholder="이메일을 입력해주세요"
             type="email"
           />
           <br />
+          <p style={styles.label}>비밀번호 : </p>
           <input
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="enter your Password"
+            placeholder="비밀번호를 입력해주세요"
             type="password"
           />
-          <p>Not a member? :</p>
-          <button type="submit" onClick={register}>
-            Register Now
-          </button>
           <br />
-          <button
-            onClick={() => {
-              dispatch(closeRegi());
-            }}
-          >
-            다음에 할래요!
-          </button>
+          <p style={styles.label}>비밀번호 확인 : </p>
+          <input
+            value={checkPassword}
+            onChange={(e) => setCheckPassword(e.target.value)}
+            placeholder="비밀번호를 다시 입력해주세요"
+            type="password"
+          />
+          <br />
+          <Button type="submit" onClick={register}>
+            가입하기!
+          </Button>
+          <br />
         </form>
       </div>
     </TransitionsModal>
