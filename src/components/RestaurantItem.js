@@ -32,43 +32,37 @@ const RestaurantItemBlock = styled.div`
     margin-top: 3rem;
   }
 `;
-const RestaurantItem = ({ x }) => {
-  // const { BSSH_NM, SIGUN_NM, DETAIL_ADRES, RM } = x;
-  // return (
-  //   <RestaurantItemBlock>
-  //     <div className="contents">
-  //       <h4>{BSSH_NM}</h4>
-  //       <p>{SIGUN_NM}</p>
-  //       <p>{`${DETAIL_ADRES} ${RM}`}</p>
-  //       <br />
-  //     </div>
-  //   </RestaurantItemBlock>
-  // );
-  const { MAIN_TITLE, ITEMCNTNTS, HOMEPAGE_URL, MAIN_IMG_THUMB } = x;
+
+const RestaurantItem = ({ restaurant }) => {
+  const { SBW, BUS, BZ_NM, SMPL_DESC, HP, MNU, GNG_CS } = restaurant;
+  // console.log(MNU.replace("<br />", ""));
+
+  const menu = MNU.replace(
+    /<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/gi,
+    " , "
+  );
+
   return (
     <RestaurantItemBlock>
-      {x.MAIN_IMG_THUMB && (
+      {
         <div className="thumbnail">
-          <a
-            href={HOMEPAGE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src={MAIN_IMG_THUMB} alt="thumbnail" />
+          <a href={HP} target="_blank" rel="noopener noreferrer">
+            Link
           </a>
         </div>
-      )}
+      }
       <div className="contents">
         <h4>
-          <a
-            href={HOMEPAGE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {MAIN_TITLE}
+          <a href={HP} target="_blank" rel="noopener noreferrer">
+            {BZ_NM}
           </a>
         </h4>
-        <p>{ITEMCNTNTS}</p>
+        <p>{GNG_CS}</p>
+        <p>{SMPL_DESC}</p>
+        <h5>주메뉴 : {menu}</h5>
+        <p>{SBW}</p>
+        <p>{BUS}</p>
+        <br />
       </div>
     </RestaurantItemBlock>
   );

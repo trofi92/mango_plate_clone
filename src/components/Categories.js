@@ -60,7 +60,7 @@ const CategoriesBlock = styled.div`
     height: 20%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: minmax(100px, auto);
+    grid-auto-rows: minmax(60px, auto);
     grid-template-areas:
       "a a a"
       "a a a"
@@ -68,6 +68,11 @@ const CategoriesBlock = styled.div`
     width: 100%;
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+  @media only screen and (min-width: 320px) and (max-width: 768px) {
+    a {
+      border: none !important;
+    }
   }
 `;
 
