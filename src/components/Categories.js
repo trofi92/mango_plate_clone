@@ -8,36 +8,32 @@ const categories = [
     text: "전체보기",
   },
   {
-    name: "중구",
+    name: "joong",
     text: "중구",
   },
   {
-    name: "남구",
+    name: "nam",
     text: "남구",
   },
   {
-    name: "서구",
+    name: "seo",
     text: "서구",
   },
   {
-    name: "북구",
+    name: "book",
     text: "북구",
   },
   {
-    name: "수성구",
+    name: "suseong",
     text: "수성구",
   },
   {
-    name: "달성군",
+    name: "dalseong",
     text: "달성군",
   },
   {
-    name: "달서구",
+    name: "dalseo",
     text: "달서구",
-  },
-  {
-    name: "부산",
-    text: "부산",
   },
 ];
 

@@ -302,6 +302,13 @@ input[type="submit"] {
   border: 0;
 }
 
+.searchResultBox {
+  z-index: 9999;
+  color: red;
+  height: 300px;
+  overflow-y: scroll;
+}
+
 .mainSearch {
   position: relative;
   margin: 34px 15px 0 15px;
@@ -311,7 +318,7 @@ input[type="submit"] {
   background-color: #ffffff;
 }
 
-fieldset .mainSearch .icon {
+.mainSearch .icon {
   display: block;
   position: absolute;
   top: 50%;

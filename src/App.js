@@ -11,6 +11,7 @@ import "./App.css";
 import { Home } from "./pages/Home";
 import { Routes, Route } from "react-router-dom";
 import { Restaurants } from "./components/Restaurants";
+import { Redirect } from "./pages/Redirect";
 
 function App() {
   const user = useSelector(selectUser);
@@ -41,6 +42,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/" element={<Restaurants />} />
         <Route path="/:category" element={<Home />} />
+        <Route path="/redirect" element={<Redirect />} />
       </Routes>
       {/* <Home /> */}
     </>
