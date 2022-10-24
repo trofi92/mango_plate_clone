@@ -58,7 +58,7 @@ const RestaurantItem = ({ restaurant }) => {
     /<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/gi,
     "  "
   );
-
+  console.log(restaurant.BZ_NM);
   const handleLink = () => {
     HP === "없음"
       ? alert("페이지를 찾을 수 없어요!")

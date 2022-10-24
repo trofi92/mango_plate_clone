@@ -44,17 +44,17 @@ const RestaurantList = ({ category }) => {
   // console.log(data.data);
 
   return (
-    // <RestaurantListBlock>
-    //   {data.data.map((restaurant) => (
-    //     <div key={restaurant.OPEN_ID}>
-    //       <RestaurantItem
-    //         key={restaurant.OPEN_ID}
-    //         restaurant={restaurant}
-    //       />
-    //     </div>
-    //   ))}
-    // </RestaurantListBlock>
-    <Test data={data.data} />
+    <RestaurantListBlock>
+      {data.data.map((restaurant) => (
+        <div key={restaurant.OPEN_ID}>
+          <RestaurantItem
+            key={restaurant.OPEN_ID}
+            restaurant={restaurant}
+          />
+        </div>
+      ))}
+    </RestaurantListBlock>
+    // <Test data={data.data} />
   );
 };
 

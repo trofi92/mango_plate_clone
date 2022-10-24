@@ -12,6 +12,7 @@ export default function useSearch(query, pageNumber) {
       setRestaurants([]);
     };
   }, [query]);
+  console.log(restaurants);
 
   useEffect(() => {
     setLoading(true);
@@ -19,7 +20,7 @@ export default function useSearch(query, pageNumber) {
     let cancel;
     axios
       .get(
-        "https://bananaplate-clone-default-rtdb.firebaseio.com/data/all.json",
+        "https://bananaplate-clone-default-rtdb.firebaseio.com/data/all/data.json",
         {
           params: { q: query, page: pageNumber },
           cancelToken: new axios.CancelToken((c) => (cancel = c)),
@@ -30,13 +31,12 @@ export default function useSearch(query, pageNumber) {
           return [
             ...new Set([
               ...prevRestaurants,
-              ...res.data.data.map((x) => x.BZ_NM),
+              ...res.data.map((x) => x.BZ_NM),
             ]),
           ];
         });
-        setHasMore(res.data.data.length > 0);
+        setHasMore(res.data.length > 0);
         setLoading(false);
-        // console.log(res.data.data);
       })
       .catch((e) => {
         if (axios.isCancel(e)) return;

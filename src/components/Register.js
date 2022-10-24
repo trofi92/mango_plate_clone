@@ -6,7 +6,6 @@ import {
 } from "firebase/auth";
 import { authService } from "../firebaseConfig";
 import { login } from "../features/login/userSlice";
-import { closeRegi } from "../features/modal/modalSlice";
 import { useNavigate } from "react-router-dom";
 import TransitionsModal from "./TransitionsModal";
 import { Button } from "@mui/material";

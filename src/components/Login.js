@@ -9,9 +9,9 @@ import { useDispatch } from "react-redux";
 import { login } from "../features/login/userSlice";
 import styles from "./Login.module.css";
 import TransitionsModal from "./TransitionsModal";
-import { Alert, Button } from "@mui/material";
+import { Button } from "@mui/material";
 
-function Login() {
+function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();

@@ -91,8 +91,7 @@ export const Header = () => {
           </button>
         </li>
         <div className={styles.mobileUserBtn}>
-          Login
-          <Login />
+          <Login title={"Login"} />
         </div>
 
         {/*WIP: 회원페이지 */}
