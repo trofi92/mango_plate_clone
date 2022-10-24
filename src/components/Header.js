@@ -6,7 +6,6 @@ import { selectUser } from "../features/login/userSlice";
 import { logout } from "../features/login/userSlice";
 import { Register } from "./Register";
 import { useScroll } from "../lib/useScroll";
-import Search from "./Search";
 
 export const Header = () => {
   const user = useSelector(selectUser);
@@ -106,17 +105,39 @@ export const Header = () => {
           </button>
         </ul>
       </header>
-
       {/* 타이틀/검색창 */}
       <div>
         <p className={styles.title}>
           너와 나의 먹킷리스트 찐경험 후기!
         </p>
         <h1 className={styles.title}>바나나플레이트</h1>
-        <div>
-          <Search />
-        </div>
 
+        {/*검색창 클릭시 추천,인기,최근 검색어 탭 표출
+         <p>
+          <a href="#"></a>
+          <a href="#"></a>
+          <a href="#"></a>
+        </p> */}
+
+        <fieldset className={styles.mainSearch}>
+          <legend>전체 검색</legend>
+          <label className={styles.searchWord}>
+            <span className={styles.icon}>검색 : </span>
+            <input
+              className={styles.homeSerchInput}
+              type="text"
+              maxLength="50"
+              placeholder="지역, 식당 혹은 음식"
+              autoComplete="off"
+            />
+            <span className={styles.clearBtn}>CLEAR</span>
+          </label>
+          <input
+            className={styles.btnSearch}
+            type="submit"
+            value="검색"
+          />
+        </fieldset>
         <aside className={`${styles.shortcutApp} ${styles.typeMain}`}>
           <a href="/" className={`${styles.btn} ${styles.inbound}`}>
             <img
