@@ -1,69 +1,62 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-export const useSearch = () => {
-  //검색창 입력시 상태감지, throttling적용
-  const [searchItem, setSearchItem] = useState("");
+export default function useSearch(query, pageNumber) {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [restaurants, setRestaurants] = useState([]);
+  const [hasMore, setHasMore] = useState(false);
 
-  const onSearch = (e) => {
-    e.preventDefault();
-    setInterval(setSearchItem(e.target.value), 1500);
-  };
+  useEffect(() => {
+    return () => {
+      setRestaurants([]);
+    };
+  }, [query]);
 
-  if (onSearch === "") {
-    return searchItem;
-  } else if (onSearch.length > 2) {
-  }
-};
+  useEffect(() => {
+    setLoading(true);
+    setError(false);
+    let cancel;
+    axios
+      .get(
+        "https://bananaplate-clone-default-rtdb.firebaseio.com/data/all.json",
+        {
+          params: { q: query, page: pageNumber },
+          cancelToken: new axios.CancelToken((c) => (cancel = c)),
+        }
+      )
+      .then((res) => {
+        setRestaurants((prevRestaurants) => {
+          return [
+            ...new Set([
+              ...prevRestaurants,
+              ...res.data.data.map((x) => x.BZ_NM),
+            ]),
+          ];
+        });
+        setHasMore(res.data.data.length > 0);
+        setLoading(false);
+        // console.log(res.data.data);
+      })
+      .catch((e) => {
+        if (axios.isCancel(e)) return;
+        setError(true);
+      });
+    return () => cancel();
+  }, [query, pageNumber]);
+  return { restaurants, hasMore, loading, error };
+}
 
-// import { useState } from "react";
-
-// const useInput = (validation) => {
-//   const [enteredValue, setEnteredValue] = useState({
-//     email: "",
-//     pw: "",
-//     cpw: "",
+// axios({
+//   method: "GET",
+//   url: "http://openlibrary.org/search.json",
+//   params: { q: query, page: pageNumber },
+//   cancelToken: new axios.CancelToken((c) => (cancel = c)),
+// })
+//   .then((res) => {
+//     console.log(res.data);
+//   })
+//   .catch((e) => {
+//     if (axios.isCancel(e)) return;
 //   });
-//   const [isTouched, setIsTouched] = useState(false);
-
-//   const enteredValueIsValid = validation(enteredValue.email);
-//   const hasError = isTouched && !enteredValueIsValid;
-//   const reset = () => {
-//     setEnteredValue("");
-//     setIsTouched(false);
-//   };
-//   const inputClasses = hasError
-//     ? "form-control invalid"
-//     : "form-control";
-
-//   const onBlurHandler = (e) => {
-//     setIsTouched(true);
-//   };
-
-//   const onChangeHandler = (e) => {
-//     e.preventDefault();
-//     const nextForm = {
-//       ...enteredValue,
-//       [e.target.name]: e.target.value,
-//     };
-//     setEnteredValue(nextForm);
-//   };
-
-//   const submitFormHandler = (e) => {
-//     e.preventDefault();
-//     if (enteredValueIsValid) return;
-//     reset();
-//   };
-
-//   return {
-//     value: enteredValue,
-//     setEnteredValue: setEnteredValue,
-//     isValid: enteredValueIsValid,
-//     hasError,
-//     onBlurHandler,
-//     onChangeHandler,
-//     reset,
-//     inputClasses,
-//     submitFormHandler,
-//   };
-// };
-// export default useInput;
+// return () => cancel();
