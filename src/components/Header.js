@@ -40,18 +40,16 @@ export const Header = () => {
             </a>
           </li>
           <li className={styles.headerMenuNewItem}>
-            <a href="/" className={styles.headerMenuLink}>
-              <span className={styles.headerMenuText}>
-                내일 뭐먹지?
-              </span>
-            </a>
-          </li>
-          <li className={styles.headerMenuNewItem}>
-            <a href="/" className={styles.headerMenuLink}>
+            <button
+              onClick={() => {
+                alert("서비스 준비중입니다!");
+              }}
+              className={styles.headerMenuLink}
+            >
               <span className={styles.headerMenuText}>
                 주말에 뭐할래?
               </span>
-            </a>
+            </button>
           </li>
 
           {/* 로그인/로그아웃 */}
@@ -90,9 +88,24 @@ export const Header = () => {
             <span className={styles.headerMenuText}>회원가입</span>
           </button>
         </li>
-        <div className={styles.mobileUserBtn}>
-          <Login title={"Login"} />
-        </div>
+        {user !== null ? (
+          <p
+            onClick={() => {
+              dispatch(logout());
+              console.log(logout());
+            }}
+            className={styles.mobileLogoutText}
+          >
+            로그아웃
+          </p>
+        ) : (
+          <div className={styles.mobileUserBtn}>
+            <p className={styles.mobileLoginText}>
+              로그인
+              <Login />
+            </p>
+          </div>
+        )}
 
         {/*WIP: 회원페이지 */}
         <ul
@@ -111,32 +124,6 @@ export const Header = () => {
         </p>
         <h1 className={styles.title}>바나나플레이트</h1>
 
-        {/*검색창 클릭시 추천,인기,최근 검색어 탭 표출
-         <p>
-          <a href="#"></a>
-          <a href="#"></a>
-          <a href="#"></a>
-        </p> */}
-
-        <fieldset className={styles.mainSearch}>
-          <legend>전체 검색</legend>
-          <label className={styles.searchWord}>
-            <span className={styles.icon}>검색 : </span>
-            <input
-              className={styles.homeSerchInput}
-              type="text"
-              maxLength="50"
-              placeholder="지역, 식당 혹은 음식"
-              autoComplete="off"
-            />
-            <span className={styles.clearBtn}>CLEAR</span>
-          </label>
-          <input
-            className={styles.btnSearch}
-            type="submit"
-            value="검색"
-          />
-        </fieldset>
         <aside className={`${styles.shortcutApp} ${styles.typeMain}`}>
           <a href="/" className={`${styles.btn} ${styles.inbound}`}>
             <img

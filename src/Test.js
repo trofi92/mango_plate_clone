@@ -4,7 +4,7 @@ export default function Test({ data }) {
   //   const { OPEN_ID, BZ_NM, SMPL_DESC, FD_CS } = data;
   const [searchTerm, setSearchTerm] = useState("");
   return (
-    <div className="App">
+    <div>
       <input
         type="text"
         placeholder="Search..."
