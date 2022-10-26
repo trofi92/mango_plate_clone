@@ -14,9 +14,6 @@ export const Header = () => {
   //custom hook :  스크롤 이벤트
   const { y } = useScroll();
 
-  // WIP : 사용자 좋아요 or 즐겨찾기 기능 추가시 카운트 증가
-  let count = 0;
-
   return (
     <div className={styles.mainHeader}>
       <header
@@ -106,16 +103,6 @@ export const Header = () => {
             </p>
           </div>
         )}
-
-        {/*WIP: 회원페이지 */}
-        <ul
-          className={`${styles.headerIconButtonItem} ${styles.onlyMobile}`}
-        >
-          <button className={styles.userProfileButton}>
-            <span className={styles.personIcon}></span>
-            <span className={styles.historyCount}>{count}</span>
-          </button>
-        </ul>
       </header>
       {/* 타이틀/검색창 */}
       <div>

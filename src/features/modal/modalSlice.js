@@ -7,17 +7,17 @@ export const modalSlice = createSlice({
   name: "modal", //name of reducer function
   initialState, //default value
   reducers: {
-    openRegi: (state, action) => {
+    openModal: (state, action) => {
       state.isOpen = true;
     },
-    closeRegi: (state, action) => {
+    closeModal: (state, action) => {
       state.isOpen = false;
     },
   },
 });
 
 //selectors
-export const { openRegi, closeRegi } = modalSlice.actions;
+export const { openModal, closeModal } = modalSlice.actions;
 export default modalSlice.reducer;
 
 // createAction으로 액션을 만들면 액션에 필요한 추가 데이터는 payload라는 이름을 사용한다.

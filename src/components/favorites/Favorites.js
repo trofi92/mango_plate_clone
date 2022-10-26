@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import TransitionsModal from "../TransitionsModal";
 import styles from "./Favorites.module.css";
 import FavoritesItem from "./FavoritesItem";
 const Favorites = () => {

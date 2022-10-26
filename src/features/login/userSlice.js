@@ -3,7 +3,7 @@ import { signOut } from "firebase/auth";
 import { authService } from "../../firebaseConfig";
 
 const initialState = {
-  value: null,
+  user: null,
 };
 
 export const userSlice = createSlice({

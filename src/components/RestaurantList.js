@@ -3,7 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 import usePromise from "../lib/usePromise";
 import styles from "./Header.module.css";
-import { Button } from "@mui/material";
+import { Backdrop, Button } from "@mui/material";
 import { CartIcon } from "../CartIcons";
 import RestaurantItem from "./RestaurantItem";
 import { useNavigate } from "react-router-dom";
@@ -23,7 +23,7 @@ const RestaurantList = ({ category }) => {
   useEffect(() => {
     const debounce = setTimeout(() => {
       return setQuery(tmpQuery);
-    }, 600); // setTimeout 설정
+    }, 700); // setTimeout 설정
     return () => clearTimeout(debounce); // clearTimeout 바로 타이머 제거
   }, [tmpQuery]);
 
@@ -36,11 +36,13 @@ const RestaurantList = ({ category }) => {
   }, [category]);
 
   if (loading) {
-    <span>Loading...</span>;
+    return <Backdrop open={true} />;
+    // <span>Loading...</span>;
   }
 
   //when it doesn't get response values
   if (!response) {
+    <Backdrop open={true} />;
     return ""; //or null
   }
   // when it cause some error

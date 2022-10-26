@@ -59,7 +59,7 @@ function Login() {
       });
     // returns  an auth *"object"* after a successful authentication
     // userAuth.user contains all our user details(values)
-    // return dispatch(closeRegi());
+    // return dispatch(closeModal());
   };
 
   return (
