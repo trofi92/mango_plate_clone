@@ -1,0 +1,38 @@
+.cart {
+  display: flex;
+  margin: 30px auto;
+  height: max-content;
+  padding: 20px 20px 0 20px;
+  gap: 20px;
+  flex: 1;
+}
+
+.cartLeft {
+  padding: 20px;
+  width: 100%;
+  background-color: white;
+}
+
+.cartLeft h3 {
+  font-size: 32px;
+  font-weight: 450;
+  padding-bottom: 20px;
+  border-bottom: 1px solid gainsboro;
+}
+
+.cartTitle {
+  margin-right: 10px;
+  padding: 10px;
+  border-bottom: 1px solid lightgray;
+}
+
+@media (max-width: 769px) {
+  .cart {
+    flex-direction: column-reverse;
+    margin: unset;
+  }
+
+  .cartLeft {
+    width: calc(100% - 40px);
+  }
+}

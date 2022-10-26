@@ -11,7 +11,7 @@ import styles from "./Login.module.css";
 import TransitionsModal from "./TransitionsModal";
 import { Button } from "@mui/material";
 
-function Login(props) {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();

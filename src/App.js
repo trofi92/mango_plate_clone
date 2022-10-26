@@ -1,10 +1,6 @@
-import { useLayoutEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  login,
-  logout,
-  selectUser,
-} from "./features/login/userSlice";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { login, logout } from "./features/login/userSlice";
 import { authService } from "./firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 import "./App.css";
@@ -13,13 +9,16 @@ import { Routes, Route } from "react-router-dom";
 import { Restaurants } from "./components/Restaurants";
 import { Redirect } from "./pages/Redirect";
 import NotFound from "./pages/NotFound";
-import Test from "./Test";
-
+import Favorites from "./components/favorites/Favorites";
+import { persistor } from "./app/store";
 function App() {
-  const user = useSelector(selectUser);
   const dispatch = useDispatch();
+  const purge = async () => {
+    await persistor.purge();
+  };
+
   // useEffect hook : check at page load if a user is authenticated
-  useLayoutEffect(() => {
+  useEffect(() => {
     onAuthStateChanged(authService, (userAuth) => {
       if (userAuth) {
         // if user is logged in, send the user's details(value) to redux,
@@ -32,24 +31,22 @@ function App() {
         );
       } else {
         dispatch(logout());
-        // console.log(userAuth);
+        setTimeout(() => purge(), 200);
       }
       return;
     });
   }, []);
-  console.log(user);
   return (
     <>
       <Routes>
-        <Route path="/Test" element={<Test />} />
         <Route path="/" element={<Home />} />
         <Route path="/" element={<Home />} />
         <Route path="/:category" element={<Home />} />
         <Route path="/" element={<Restaurants />} />
         <Route path="/redirect" element={<Redirect />} />
+        <Route path="/favorites" element={<Favorites />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
-      {/* <Home /> */}
     </>
   );
 }

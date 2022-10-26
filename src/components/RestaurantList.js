@@ -3,18 +3,27 @@ import styled from "styled-components";
 import axios from "axios";
 import usePromise from "../lib/usePromise";
 import styles from "./Header.module.css";
+import { Button } from "@mui/material";
+import { CartIcon } from "../CartIcons";
 import RestaurantItem from "./RestaurantItem";
 import { useNavigate } from "react-router-dom";
+import { addToFavorites } from "../features/favorites/favoritesSlice";
+import { useDispatch } from "react-redux";
 
 const RestaurantList = ({ category }) => {
+  const dispatch = useDispatch();
+
   const [query, setQuery] = useState("");
+
   const [tmpQuery, setTmpQuery] = useState(query);
+
   const handleChange = (e) => setTmpQuery(e.target.value);
   const navigate = useNavigate();
+
   useEffect(() => {
     const debounce = setTimeout(() => {
       return setQuery(tmpQuery);
-    }, 700); // setTimeout 설정
+    }, 600); // setTimeout 설정
     return () => clearTimeout(debounce); // clearTimeout 바로 타이머 제거
   }, [tmpQuery]);
 
@@ -25,7 +34,7 @@ const RestaurantList = ({ category }) => {
       `https://bananaplate-clone-default-rtdb.firebaseio.com/data/${query}.json`
     );
   }, [category]);
-  console.log(query);
+
   if (loading) {
     <span>Loading...</span>;
   }
@@ -70,6 +79,7 @@ const RestaurantList = ({ category }) => {
           value="검색"
         />
       </fieldset>
+
       <RestaurantListBlock>
         {data.data
           .filter((x) => {
@@ -83,9 +93,29 @@ const RestaurantList = ({ category }) => {
             }
           })
           .map((restaurant) => (
-            <div key={restaurant.OPEN_ID}>
+            <div key={restaurant.OPENDATA_ID}>
+              <Button
+                style={{
+                  position: "relative",
+                  left: "-70px",
+                  top: "50px",
+                }}
+                onClick={() => {
+                  dispatch(
+                    addToFavorites({
+                      id: restaurant.OPENDATA_ID,
+                      title: restaurant.BZ_NM,
+                    })
+                  );
+                  alert("찜목록에 추가되었습니다");
+                }}
+              >
+                <CartIcon />
+              </Button>
               <RestaurantItem
-                key={restaurant.OPEN_ID}
+                key={restaurant.OPENDATA_ID}
+                id={restaurant.OPENDATA_ID}
+                title={restaurant.BZ_NM}
                 restaurant={restaurant}
               />
             </div>

@@ -1,13 +1,7 @@
-// import { useNavigate } from "react-router-dom";\
-import { useState } from "react";
 import styled from "styled-components";
 
 const RestaurantItem = ({ restaurant }) => {
-  const [bookMarkIcon, setbookMarkIcon] = useState(false);
-  // const navigate = useNavigate();
-
   const { SBW, BUS, BZ_NM, SMPL_DESC, MNU, GNG_CS } = restaurant;
-
   const menu = MNU.replace(
     /<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/gi,
     " "
@@ -26,13 +20,6 @@ const RestaurantItem = ({ restaurant }) => {
     /<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/gi,
     "  "
   );
-  // const handle = () => {
-  //   HP === "없음"
-  //     ? alert("페이지를 찾을 수 없어요!")
-  //     : navigate("/redirect", {
-  //         state: { url: `https://${HP}` },
-  //       });
-  // };
 
   const handleLink = (e) => {
     window.open(
@@ -40,17 +27,16 @@ const RestaurantItem = ({ restaurant }) => {
     );
   };
 
+  // const handleFavorites = (e) => {
+  //   if(e.target.value === )
+  // };
+
   return (
     <>
       <RestaurantItemBlock>
-        {
-          <div className="thumbnail">
-            <button onClick={handleLink}></button>
-          </div>
-        }
         <div className="contents">
           <button onClick={handleLink}>
-            <h4>{BZ_NM}</h4>
+            <h3>{BZ_NM}</h3>
           </button>
           <p>{GNG_CS}</p>
           <p>{desc}</p>
@@ -70,17 +56,8 @@ export default RestaurantItem;
 const RestaurantItemBlock = styled.div`
   display: flex;
 
-  .thumbnail {
-    margin-right: 1rem;
-    img {
-      display: block;
-      width: 160px;
-      height: 100px;
-      object-fit: cover;
-    }
-  }
   .contents {
-    h4 {
+    h3 {
       margin: 0;
       a {
         color: black;
