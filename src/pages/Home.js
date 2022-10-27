@@ -5,20 +5,21 @@ import Main from "../components/Main";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/login/userSlice";
 import FavoritesHome from "../components/favorites/FavoritesHome";
-
+import Favorites from "../components/favorites/Favorites";
 export const Home = () => {
   const user = useSelector(selectUser);
 
   return (
     <>
       <Header />
-      {user !== null ? (
+      {user === null ? (
+        <Main />
+      ) : (
         <>
+          <Favorites />
           <FavoritesHome />
           <Restaurants />
         </>
-      ) : (
-        <Main />
       )}
       <Footer />
     </>

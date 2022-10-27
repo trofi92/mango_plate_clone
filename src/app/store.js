@@ -14,13 +14,6 @@ import {
   REGISTER,
 } from "redux-persist";
 
-// export const store = configureStore({
-//   reducer: {
-//     user: userReducer,
-//     modal: modalReducer,
-//     favorites: favoritesReducer,
-//   },
-// });
 const persistConfig = {
   key: "root",
   storage,

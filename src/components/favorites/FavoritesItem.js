@@ -1,26 +1,29 @@
 import { removeItem } from "../../features/favorites/favoritesSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import styles from "./FavoritesItem.module.css";
+import { handleLink } from "../RestaurantItem";
 
-function FavoritesItem({ OPEN_ID, BZ_NM }) {
+const FavoritesItem = ({ id, title, menu }) => {
   const dispatch = useDispatch();
-  const favorites = useSelector((state) => state.favorites);
+  // const favoritesMenu = menu.replace(
+  //   /<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/gi,
+  //   "/"
+  // );
   return (
     <div className={styles.cartItem}>
       <div className={styles.cartItemInfo}>
-        <p className={styles.cartItemTitle}>{BZ_NM}</p>
-        <div className={styles.cartItemIncrDec}>
-          <p>{favorites.favorites.length}</p>
-        </div>
-
+        <button onClick={handleLink}>
+          <p className={styles.cartItemTitle}>{title}</p>
+        </button>
+        {/* <div>{favoritesMenu}</div> */}
         <button
           className={styles.cartItemRemoveButton}
-          onClick={() => dispatch(removeItem(OPEN_ID))}
+          onClick={() => dispatch(removeItem(id))}
         >
-          Remove
+          지우기
         </button>
       </div>
     </div>
   );
-}
+};
 export default FavoritesItem;

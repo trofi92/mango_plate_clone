@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login, logout } from "./features/login/userSlice";
 import { authService } from "./firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
@@ -10,8 +10,11 @@ import { Restaurants } from "./components/Restaurants";
 import { Redirect } from "./pages/Redirect";
 import NotFound from "./pages/NotFound";
 import Favorites from "./components/favorites/Favorites";
+import RemoveModal from "./components/favorites/RemoveModal";
 import { persistor } from "./app/store";
+
 function App() {
+  const { isOpen } = useSelector((state) => state.modal);
   const dispatch = useDispatch();
   const purge = async () => {
     await persistor.purge();
@@ -36,8 +39,10 @@ function App() {
       return;
     });
   }, []);
+
   return (
     <>
+      {isOpen && <RemoveModal />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/" element={<Home />} />

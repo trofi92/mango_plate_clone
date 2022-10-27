@@ -6,9 +6,11 @@
   gap: 20px;
   flex: 1;
 }
-
+.container {
+  display: inline;
+}
 .cartLeft {
-  padding: 20px;
+  padding: 0px;
   width: 100%;
   background-color: white;
 }

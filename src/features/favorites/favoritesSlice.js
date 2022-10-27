@@ -40,6 +40,9 @@ const favoritesSlice = createSlice({
       );
       state.favorites = removeItem;
     },
+    removeAllItem: (state) => {
+      state.favorites = [];
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(PURGE, () => initialState);
@@ -52,4 +55,5 @@ export const {
   incrementQuantity,
   decrementQuantity,
   removeItem,
+  removeAllItem,
 } = favoritesSlice.actions;

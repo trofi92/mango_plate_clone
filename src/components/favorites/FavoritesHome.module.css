@@ -17,6 +17,10 @@
   color: white;
 }
 
+.cartCount {
+  display: flex;
+}
+
 .shoppingFavorites > p {
   position: absolute;
   top: 0;

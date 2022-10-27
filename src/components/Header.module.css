@@ -610,6 +610,14 @@ input[type="submit"] {
     display: none;
   }
 }
+@media only screen and (min-width: 769px) {
+  .favorite {
+    width: 50px;
+    position: relative;
+    left: -70px;
+    top: 50px;
+  }
+}
 
 @media only screen and (min-width: 320px) and (max-width: 768px) {
   .mainHeader {

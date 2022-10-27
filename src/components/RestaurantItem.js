@@ -21,16 +21,6 @@ const RestaurantItem = ({ restaurant }) => {
     "  "
   );
 
-  const handleLink = (e) => {
-    window.open(
-      `https://map.naver.com/v5/search/대구+${e.target.innerHTML}`
-    );
-  };
-
-  // const handleFavorites = (e) => {
-  //   if(e.target.value === )
-  // };
-
   return (
     <>
       <RestaurantItemBlock>
@@ -52,7 +42,11 @@ const RestaurantItem = ({ restaurant }) => {
 };
 
 export default RestaurantItem;
-
+export const handleLink = (e) => {
+  window.open(
+    `https://map.naver.com/v5/search/대구+${e.target.innerHTML}`
+  );
+};
 const RestaurantItemBlock = styled.div`
   display: flex;
 

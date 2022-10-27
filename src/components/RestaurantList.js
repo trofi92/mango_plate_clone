@@ -3,27 +3,28 @@ import styled from "styled-components";
 import axios from "axios";
 import usePromise from "../lib/usePromise";
 import styles from "./Header.module.css";
-import { Backdrop, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import { CartIcon } from "../CartIcons";
 import RestaurantItem from "./RestaurantItem";
 import { useNavigate } from "react-router-dom";
 import { addToFavorites } from "../features/favorites/favoritesSlice";
 import { useDispatch } from "react-redux";
+import { ToastNotification } from "../ui/ToastNotification";
 
 const RestaurantList = ({ category }) => {
-  const dispatch = useDispatch();
-
   const [query, setQuery] = useState("");
-
   const [tmpQuery, setTmpQuery] = useState(query);
+  const [toastState, setToastState] = useState(false);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleChange = (e) => setTmpQuery(e.target.value);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const debounce = setTimeout(() => {
       return setQuery(tmpQuery);
-    }, 700); // setTimeout 설정
+    }, 200); // setTimeout 설정
     return () => clearTimeout(debounce); // clearTimeout 바로 타이머 제거
   }, [tmpQuery]);
 
@@ -36,13 +37,11 @@ const RestaurantList = ({ category }) => {
   }, [category]);
 
   if (loading) {
-    return <Backdrop open={true} />;
-    // <span>Loading...</span>;
+    <span>Loading...</span>;
   }
 
   //when it doesn't get response values
   if (!response) {
-    <Backdrop open={true} />;
     return ""; //or null
   }
   // when it cause some error
@@ -55,9 +54,6 @@ const RestaurantList = ({ category }) => {
     );
   }
   const data = response.data;
-
-  // console.log(response.data);
-  // console.log(data.data);
 
   return (
     <>
@@ -81,7 +77,9 @@ const RestaurantList = ({ category }) => {
           value="검색"
         />
       </fieldset>
-
+      {toastState === true ? (
+        <ToastNotification setToastState={setToastState} />
+      ) : null}
       <RestaurantListBlock>
         {data.data
           .filter((x) => {
@@ -96,24 +94,22 @@ const RestaurantList = ({ category }) => {
           })
           .map((restaurant) => (
             <div key={restaurant.OPENDATA_ID}>
-              <Button
-                style={{
-                  position: "relative",
-                  left: "-70px",
-                  top: "50px",
-                }}
-                onClick={() => {
-                  dispatch(
-                    addToFavorites({
-                      id: restaurant.OPENDATA_ID,
-                      title: restaurant.BZ_NM,
-                    })
-                  );
-                  alert("찜목록에 추가되었습니다");
-                }}
-              >
-                <CartIcon />
-              </Button>
+              <div className={styles.favorite}>
+                <Button
+                  onClick={() => {
+                    dispatch(
+                      addToFavorites({
+                        id: restaurant.OPENDATA_ID,
+                        title: restaurant.BZ_NM,
+                        menu: restaurant.MNU,
+                      })
+                    );
+                    setToastState(true);
+                  }}
+                >
+                  <CartIcon />
+                </Button>
+              </div>
               <RestaurantItem
                 key={restaurant.OPENDATA_ID}
                 id={restaurant.OPENDATA_ID}
